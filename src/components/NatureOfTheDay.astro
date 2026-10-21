@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+
+/**
+ * "Nature of the day" — a single featured photo.
+ * Drop any image into src/assets/trees/ to show it; the section hides itself
+ * when the folder is empty. The newest file (by name) wins, so date-prefixed
+ * filenames like 2026-10-21.jpg cycle naturally.
+ */
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/photography/*.{jpg,jpeg,png,webp,avif}', {
+  eager: true,
+});
+const latest = Object.keys(images)
+  .sort()
+  .pop();
+const image = latest ? images[latest].default : undefined;
+---
+
+{
+  image && (
+    <Section title="Nature of the day">
+      <figure>
+        <Image
+          src={image}
+          alt="Today Image."
+          widths={[600, 900]}
+          sizes="(min-width: 768px) 720px, 100vw"
+          class="w-full outline p-2 outline-neutral-500 hover:outline-neutral-200 object-cover dark:border-neutral-800"
+        />
+      </figure>
+    </Section>
+  )
+}

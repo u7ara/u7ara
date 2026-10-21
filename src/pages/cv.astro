@@ -11,8 +11,12 @@ const { basics, experience, education, projects, skills } = entry.data;
 const range = (start: string, end: string | null) => (end ? `${start} – ${end}` : `${start} – Present`);
 
 const cvViewUrl = site.cv.view;
-// Google Drive download needs the file id; falls back to the view link.
-const cvDownloadUrl = cvViewUrl.replace(/\/view.*$/, '/export?format=pdf');
+// Google Drive's direct-download endpoint needs the bare file id, which we pull
+// out of the share link. Falls back to the view link if no id is found.
+const cvFileId = cvViewUrl.match(/\/d\/([^/?#]+)/)?.[1];
+const cvDownloadUrl = cvFileId
+  ? `https://drive.google.com/uc?export=download&id=${cvFileId}`
+  : cvViewUrl;
 ---
 
 <BaseLayout title="CV" description={`${basics.name} — ${basics.title}. ${basics.summary}`}>

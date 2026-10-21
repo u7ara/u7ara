@@ -22,7 +22,7 @@ export const site = {
   // Set sharing to "Anyone with the link". The Download button derives its
   // direct-download URL from this link automatically.
   cv: {
-    view: 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing',
+    view: 'https://drive.google.com/file/d/1JGTAuS1rp8iaAR6QSyYa71zs1Yi2zpeP/view?usp=sharing',
   },
 
   nav: [

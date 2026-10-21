@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import PostRow from '../components/PostRow.astro';
+import NatureOfTheDay  from '../components/NatureOfTheDay.astro';
 import { site } from '../data/site';
 import { getPosts } from '../lib/posts';
 
@@ -32,4 +33,6 @@ const posts = (await getPosts()).slice(0, 3);
     <a slot="aside" href="/blog" class="link-muted">All posts →</a>
     <PostRow posts={posts} />
   </Section>
+
+  <NatureOfTheDay/>
 </BaseLayout>

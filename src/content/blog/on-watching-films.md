@@ -2,7 +2,7 @@
 title: On watching films twice
 description: The second viewing is where a film actually starts to work on you.
 date: 2026-09-28
-draft: false
+draft: true
 ---
 
 The first time I watch a film, I'm mostly following the plot. Where is this going,
