@@ -1,50 +1,84 @@
 # TODO: Replace all placeholder content below with your real CV.
 basics:
-  name: Your Name
-  title: Developer
-  email: you@example.com
-  location: Jakarta, Indonesia
-  website: https://example.com
+  name: Arrom Adipta Bagas
+  title: Accountant
+  email: adiptabagasss@gmail.com
+  location: East Java, Indonesia
+  website: https://u7ara.netlify.app
   summary: >-
-    A short paragraph (two or three lines) describing what you do, the kind of
-    problems you like working on, and what you're looking for next.
+    Accounting graduate with hands-on experience in financial reporting, data preparation, spreadsheet
+    automation, and financial analysis across accounting and business environments.
+
+#if you still working on this role, fill end with null
 
 experience:
-  - role: Senior Developer
-    org: Company Name
-    start: Jan 2024
-    end: null
-    location: Jakarta, Indonesia
+  - role: Junior Accounting & Tax Staff
+    org: Arif, Wahyudi, & Lukman Accounting Service Firm
+    start: Nov 2025
+    end: June 2026
+    location: Sidoarjo, East Java
     highlights:
-      - Led a migration that reduced page load time by 40%.
-      - Built and maintained internal tooling used by 12 people across three teams.
-  - role: Developer
-    org: Previous Company
-    start: Jun 2021
-    end: Dec 2023
+      - Organize and review client financial data, mapping transaction details to relevant financial statement
+        accounts through structured working papers.
+      - Prepare and review periodic financial reports for five clients, ensuring data accuracy and compliance with
+        applicable accounting and tax requirements.
+      - Reconcile financial statements and calculate corporate income tax underpayments and Article 25 income
+        tax instalments for annual corporate tax reporting.
+      - Prepare tax working papers and submit periodic tax returns, including Article 21 income tax, unified
+        withholding tax, and VAT.
+      - Maintain supporting financial documentation to facilitate client payment processes and internal financial
+        controls.
+  - role: Data Reporting Project Freelance
+    org: Wahyu Adidaya Network
+    start: Sep 2025
+    end: Oct 2025
     location: Remote
     highlights:
-      - Shipped features end to end, from design review through deploy.
-      - Introduced testing conventions that cut regression bugs noticeably.
+      - Collaborated on the development of an interactive spreadsheet-based reporting tool to calculate profit
+        and loss and monitor business performance.
+      - Developed KPI summaries and data visualizations to present financial performance in an accessible,
+        decision-oriented format.
+      - Integrated and normalized data from multiple sources to improve reporting consistency and support
+        financial analysis.
+  - role: Analyst Accountant
+    org: Footkicks Store
+    start: June 2025
+    end: July 2025
+    location: Remote
+    highlights:
+      - Developed a spreadsheet-based accounting system to streamline financial data management and
+        generate reports covering a one-year reporting period.
+      - Cleaned and normalized financial datasets to improve data consistency and usability for business and
+        financial analysis.
+      - Assisted with the financial closing process and preparation of notes to the financial statements.
+  - role: Accounting Intern
+    org: Jasamarga Jogja Solo
+    start: Feb 2025
+    end: May 2025
+    location: Yogyakarta, Special Region of Yogyakarta
+    highlights:
+      - Compiled budget realization and actual expenditure data for financial reporting.
+      - Reviewed and consolidated notes to the financial statements to support reporting accuracy.
+      - Organized and archived cash disbursement vouchers and supporting financial documentation. process and preparation of notes to the financial statements.
 
 education:
-  - degree: B.Sc. in Computer Science
-    institution: University Name
-    start: 2016
-    end: 2020
-    details: Graduated with honors. Coursework in systems, algorithms, HCI.
+  - degree: A.md.Ak. in Accounting
+    institution: University of Jember
+    start: 2022
+    end: 2025
+    details: Graduated with honors. Coursework in Accounting, Tax, Financial Systems.
 
 projects:
-  - name: Project One
-    url: https://github.com/your-handle/project-one
-    description: A one-line description of what it does and why it exists.
-  - name: Project Two
-    description: A small tool built to scratch a personal itch.
+  - name: Financial Report Automation (Diploma Capstone Project)
+    url: theresno
+    description: An comprehensive implementation manage raw financial data to complete readable report.
+  # - name: Project Two
+  #   description: A small tool built to scratch a personal itch.
 
 skills:
-  - group: Languages
-    items: [TypeScript, Python, SQL]
-  - group: Tools
-    items: [Astro, Tailwind CSS, Node.js, Git]
-  - group: Interests
-    items: [Film, Typography, Long-form reading]
+  - group: Microsoft Office Suites
+    items: [Excel, Access, Word]
+  - group: Analytic
+    items: [Power BI, SQL, Python]
+  - group: Language
+    items: [English, Indonesian]

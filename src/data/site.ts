@@ -8,14 +8,14 @@ export const site = {
   title: 'Financial Data Analyst',
   location: 'East Java, Indonesia',
   description: 'Personal site and writing.',
-  url: 'https://example.com',
-  email: 'you@example.com',
+  url: 'u7ara.netlify.app',
+  email: 'adiptabagasss@gmail.com',
 
   socials: [
     // TODO: replace with your profile URLs.
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/your-handle' },
-    { label: 'Letterboxd', href: 'https://letterboxd.com/your-handle' },
-    { label: 'GitHub', href: 'https://github.com/your-handle' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/adiptabagas' },
+    { label: 'Letterboxd', href: 'https://letterboxd.com/u7ara' },
+    { label: 'GitHub', href: 'https://github.com/u7ara' },
   ],
 
   // TODO: paste the share link of your CV PDF on Google Drive.
