@@ -1,0 +1,33 @@
+---
+// Text-glyph toggle, no icon library. State is applied before paint by the
+// inline script in BaseLayout, so there is no flash of the wrong theme.
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  aria-label="Switch to light theme"
+  title="Toggle theme"
+  class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white"
+>
+  <span class="dark:hidden" aria-hidden="true">☾</span>
+  <span class="hidden dark:inline" aria-hidden="true">☀</span>
+</button>
+
+<script>
+  const button = document.getElementById('theme-toggle');
+
+  function syncLabel() {
+    const dark = document.documentElement.classList.contains('dark');
+    button?.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  syncLabel();
+
+  button?.addEventListener('click', () => {
+    const dark = !document.documentElement.classList.contains('dark');
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    syncLabel();
+  });
+</script>

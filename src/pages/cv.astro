@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+import { site } from '../data/site';
+
+const entry = await getEntry('cv', 'cv');
+if (!entry) throw new Error('Missing src/content/cv.yaml');
+
+const { basics, experience, education, projects, skills } = entry.data;
+
+const range = (start: string, end: string | null) => (end ? `${start} – ${end}` : `${start} – Present`);
+
+const cvViewUrl = site.cv.view;
+// Google Drive download needs the file id; falls back to the view link.
+const cvDownloadUrl = cvViewUrl.replace(/\/view.*$/, '/export?format=pdf');
+---
+
+<BaseLayout title="CV" description={`${basics.name} — ${basics.title}. ${basics.summary}`}>
+  <article class="pt-16 sm:pt-24">
+    <header>
+      <div class="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 class="text-3xl sm:text-[38px] sm:leading-tight">Curriculum Vitae</h1>
+          <p class="mt-2 text-neutral-500 dark:text-neutral-400">{basics.name} · {basics.title}</p>
+        </div>
+
+        <div class="flex items-center gap-4 text-[13px]">
+          <a href={cvViewUrl} target="_blank" rel="noopener noreferrer" class="link">View</a>
+          <a href={cvDownloadUrl} target="_blank" rel="noopener noreferrer" class="link">Download</a>
+        </div>
+      </div>
+
+      <p class="mt-6 max-w-[65ch]">{basics.summary}</p>
+
+      <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-neutral-500 dark:text-neutral-400">
+        <li>{basics.location}</li>
+        <li><a href={`mailto:${basics.email}`} class="link-muted">{basics.email}</a></li>
+        {
+          basics.website && (
+            <li>
+              <a href={basics.website} class="link-muted">
+                {basics.website.replace(/^https?:\/\//, '')}
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </header>
+
+    <section class="mt-16">
+      <h2 class="mb-4 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">Experience</h2>
+      <ul class="border-t border-neutral-200 dark:border-neutral-800">
+        {
+          experience.map((job) => (
+            <li class="grid gap-2 border-b border-neutral-200 py-5 dark:border-neutral-800 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <p class="text-[13px] text-neutral-500 dark:text-neutral-400">{range(job.start, job.end)}</p>
+              <div>
+                <h3 class="text-[15px] font-semibold">
+                  {job.role} <span class="font-normal text-neutral-500 dark:text-neutral-400">· {job.org}</span>
+                </h3>
+                {job.location && <p class="mt-1 text-[13px] text-neutral-500 dark:text-neutral-400">{job.location}</p>}
+                {job.highlights.length > 0 && (
+                  <ul class="mt-3 space-y-1.5">
+                    {job.highlights.map((highlight) => (
+                      <li class="flex gap-2.5">
+                        <span aria-hidden="true" class="text-neutral-500 dark:text-neutral-400">
+                          –
+                        </span>
+                        <span class="max-w-[65ch]">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="mb-4 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">Education</h2>
+      <ul class="border-t border-neutral-200 dark:border-neutral-800">
+        {
+          education.map((item) => (
+            <li class="grid gap-2 border-b border-neutral-200 py-5 dark:border-neutral-800 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <p class="text-[13px] text-neutral-500 dark:text-neutral-400">{range(item.start, item.end)}</p>
+              <div>
+                <h3 class="text-[15px] font-semibold">
+                  {item.degree} <span class="font-normal text-neutral-500 dark:text-neutral-400">· {item.institution}</span>
+                </h3>
+                {item.details && <p class="mt-2 max-w-[65ch] text-neutral-500 dark:text-neutral-400">{item.details}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="mb-4 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">Projects</h2>
+      <ul class="border-t border-neutral-200 dark:border-neutral-800">
+        {
+          projects.map((project) => (
+            <li class="border-b border-neutral-200 py-5 dark:border-neutral-800">
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link text-[15px] font-semibold"
+                >
+                  {project.name}
+                </a>
+              ) : (
+                <span class="text-[15px] font-semibold">{project.name}</span>
+              )}
+              <p class="mt-1 max-w-[65ch] text-neutral-500 dark:text-neutral-400">{project.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="mb-4 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">Skills</h2>
+      <dl class="space-y-3">
+        {
+          skills.map((group) => (
+            <div class="grid gap-1 sm:grid-cols-[10rem_1fr] sm:gap-6">
+              <dt class="text-[13px] text-neutral-500 dark:text-neutral-400">{group.group}</dt>
+              <dd>{group.items.join(', ')}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+  </article>
+</BaseLayout>

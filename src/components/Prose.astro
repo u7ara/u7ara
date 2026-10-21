@@ -1,0 +1,149 @@
+---
+// Typography wrapper for rendered Markdown. Uses :global() because the HTML
+// inside <slot /> is not part of this component's scope.
+---
+
+<div class="prose font-mono">
+  <slot />
+</div>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--color-neutral-700);
+  }
+
+  :global(.dark) .prose {
+    color: var(--color-neutral-300);
+  }
+  .prose :global(p) {
+    margin-block: 1.25em;
+  }
+
+  .prose :global(a) {
+    color: var(--color-neutral-900);
+    text-decoration: underline;
+    text-decoration-color: var(--color-neutral-400);
+    text-underline-offset: 4px;
+  }
+
+  .prose :global(a:hover) {
+    text-decoration-color: currentColor;
+  }
+
+  :global(.dark) .prose :global(a) {
+    color: var(--color-white);
+    text-decoration-color: var(--color-neutral-600);
+  }
+
+  .prose :global(h2),
+  .prose :global(h3) {
+    color: var(--color-neutral-900);
+    font-weight: 600;
+    text-wrap: balance;
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+  }
+
+  .prose :global(h2) {
+    font-size: 1.25rem;
+  }
+
+  .prose :global(h3) {
+    font-size: 1.0625rem;
+  }
+
+  :global(.dark) .prose :global(h2),
+  :global(.dark) .prose :global(h3) {
+    color: var(--color-white);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-block: 1.25em;
+    padding-left: 1.5em;
+    list-style-position: outside;
+  }
+
+  .prose :global(ul) {
+    list-style-type: disc;
+  }
+
+  .prose :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .prose :global(li) {
+    margin-block: 0.5em;
+    padding-left: 0.25em;
+  }
+
+  .prose :global(li)::marker {
+    color: var(--color-neutral-500);
+  }
+
+  .prose :global(blockquote) {
+    margin-block: 1.5em;
+    border-left: 2px solid var(--color-neutral-300);
+    padding-left: 1em;
+    color: var(--color-neutral-500);
+  }
+
+  :global(.dark) .prose :global(blockquote) {
+    border-left-color: var(--color-neutral-700);
+  }
+
+  .prose :global(code) {
+    font-size: 0.8125rem;
+    background-color: var(--color-neutral-100);
+    border-radius: 2px;
+    padding: 0.15em 0.35em;
+  }
+
+  :global(.dark) .prose :global(code) {
+    background-color: var(--color-neutral-900);
+    color: var(--color-neutral-200);
+  }
+
+  .prose :global(pre) {
+    margin-block: 1.5em;
+    overflow-x: auto;
+    background-color: var(--color-neutral-100);
+    border-radius: 2px;
+    padding: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  :global(.dark) .prose :global(pre) {
+    background-color: var(--color-neutral-900);
+    border: 1px solid var(--color-neutral-800);
+  }
+
+  .prose :global(pre code) {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .prose :global(hr) {
+    margin-block: 2.5em;
+    border: 0;
+    border-top: 1px solid var(--color-neutral-200);
+  }
+
+  :global(.dark) .prose :global(hr) {
+    border-top-color: var(--color-neutral-800);
+  }
+
+  .prose :global(strong) {
+    color: var(--color-neutral-900);
+    font-weight: 600;
+  }
+
+  :global(.dark) .prose :global(strong) {
+    color: var(--color-white);
+  }
+</style>

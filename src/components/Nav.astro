@@ -1,0 +1,40 @@
+---
+import { site } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
+---
+
+<header class="border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+  <div class="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6">
+    <a
+      href="/"
+      class="text-[15px] font-semibold text-neutral-900 dark:text-white"
+      aria-label={`${site.name} — home`}
+    >
+      {site.name}
+    </a>
+
+    <nav aria-label="Main" class="flex items-center gap-5 text-[13px]">
+      {
+        site.nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'hover:text-neutral-900 dark:hover:text-white',
+              isActive(item.href)
+                ? 'text-neutral-900 dark:text-white'
+                : 'text-neutral-500 dark:text-neutral-400',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

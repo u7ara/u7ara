@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found" description="This page does not exist.">
+  <section class="pt-16 sm:pt-24">
+    <h1 class="text-3xl sm:text-[38px] sm:leading-tight">404</h1>
+    <p class="mt-4 max-w-[65ch] text-neutral-500 dark:text-neutral-400">
+      This page doesn't exist. It may have moved, or it may never have been here.
+    </p>
+    <p class="mt-6 flex gap-6 text-[13px]">
+      <a href="/" class="link">Home</a>
+      <a href="/blog" class="link">Writing</a>
+    </p>
+  </section>
+</BaseLayout>

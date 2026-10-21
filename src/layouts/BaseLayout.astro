@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Rendered as-is before the site name. Omit for the home page. */
+  titleSuffix?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  titleSuffix = Boolean(title),
+} = Astro.props;
+
+const pageTitle = titleSuffix ? `${title} — ${site.name}` : title ?? site.name;
+const ogTitle = pageTitle;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-pt-8">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <script is:inline>
+      // Dark is the default; an explicit stored choice wins over the OS setting.
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const dark = stored ? stored === 'dark' : true;
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-4 focus:z-20 focus:bg-white focus:px-3 focus:py-2 focus:text-[13px] focus:text-neutral-900 dark:focus:bg-neutral-950 dark:focus:text-white"
+    >
+      Skip to content
+    </a>
+
+    <Nav />
+
+    <main id="main" class="mx-auto w-full max-w-3xl flex-1 px-6 pb-24">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

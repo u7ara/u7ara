@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  class?: string;
+}
+
+const { title, class: className } = Astro.props;
+---
+
+<section class:list={['mt-16', className]}>
+  <div class="mb-3 flex items-baseline justify-between gap-4">
+    <h2 class="text-[13px] font-medium tracking-wide text-neutral-500 dark:text-neutral-400">{title}</h2>
+    <slot name="aside" />
+  </div>
+  <slot />
+</section>

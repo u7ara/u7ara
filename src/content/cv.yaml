@@ -1,0 +1,50 @@
+# TODO: Replace all placeholder content below with your real CV.
+basics:
+  name: Your Name
+  title: Developer
+  email: you@example.com
+  location: Jakarta, Indonesia
+  website: https://example.com
+  summary: >-
+    A short paragraph (two or three lines) describing what you do, the kind of
+    problems you like working on, and what you're looking for next.
+
+experience:
+  - role: Senior Developer
+    org: Company Name
+    start: Jan 2024
+    end: null
+    location: Jakarta, Indonesia
+    highlights:
+      - Led a migration that reduced page load time by 40%.
+      - Built and maintained internal tooling used by 12 people across three teams.
+  - role: Developer
+    org: Previous Company
+    start: Jun 2021
+    end: Dec 2023
+    location: Remote
+    highlights:
+      - Shipped features end to end, from design review through deploy.
+      - Introduced testing conventions that cut regression bugs noticeably.
+
+education:
+  - degree: B.Sc. in Computer Science
+    institution: University Name
+    start: 2016
+    end: 2020
+    details: Graduated with honors. Coursework in systems, algorithms, HCI.
+
+projects:
+  - name: Project One
+    url: https://github.com/your-handle/project-one
+    description: A one-line description of what it does and why it exists.
+  - name: Project Two
+    description: A small tool built to scratch a personal itch.
+
+skills:
+  - group: Languages
+    items: [TypeScript, Python, SQL]
+  - group: Tools
+    items: [Astro, Tailwind CSS, Node.js, Git]
+  - group: Interests
+    items: [Film, Typography, Long-form reading]

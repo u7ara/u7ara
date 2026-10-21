@@ -1,0 +1,41 @@
+---
+import type { Post } from '../lib/posts';
+import { formatPostDate } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+  /** Show the post description under the title. */
+  showDescription?: boolean;
+}
+
+const { posts, showDescription = false } = Astro.props;
+---
+
+{
+  posts.length === 0 ? (
+    <p class="py-4 text-[13px] text-neutral-500 dark:text-neutral-400">Nothing published yet.</p>
+  ) : (
+    <ul class="border-t border-neutral-200 dark:border-neutral-800">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={`/blog/${post.slug}`}
+            class="group flex flex-col gap-1 border-b border-neutral-200 py-4 dark:border-neutral-800"
+          >
+            <span class="text-lg text-neutral-900 group-hover:underline group-hover:underline-offset-4 dark:text-white">
+              {post.title}
+            </span>
+
+            {showDescription && (
+              <span class="max-w-[65ch] text-neutral-500 dark:text-neutral-400">{post.description}</span>
+            )}
+
+            <span class="text-[13px] text-neutral-500 dark:text-neutral-400">
+              {formatPostDate(post.date)} · {post.minutes} min read
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

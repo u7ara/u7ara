@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* Class-based dark mode; the <html> class is set by the inline script in <head>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-serif: var(--font-mono);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-white font-mono text-[15px] leading-normal text-neutral-900 dark:bg-neutral-950 dark:text-neutral-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-balance font-semibold text-neutral-900 dark:text-white;
+  }
+
+  ::selection {
+    @apply bg-neutral-900 text-white;
+  }
+
+  .dark ::selection {
+    @apply bg-white text-neutral-900;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-current;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a,
+    button {
+      transition:
+        color 120ms ease-out,
+        text-decoration-color 120ms ease-out,
+        border-color 120ms ease-out,
+        background-color 120ms ease-out;
+    }
+  }
+}
+
+/* Links inside prose and body copy: underline that brightens on hover. */
+@layer components {
+  .link {
+    @apply text-neutral-900 underline decoration-neutral-300 underline-offset-4 hover:decoration-neutral-900 dark:text-white dark:decoration-neutral-600 dark:hover:decoration-white;
+  }
+
+  .link-muted {
+    @apply text-neutral-500 dark:text-neutral-400 underline decoration-transparent underline-offset-4 hover:text-neutral-900 hover:decoration-neutral-900 dark:hover:text-white dark:hover:decoration-white;
+  }
+}
+
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+  }
+}

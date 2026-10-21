@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+import { getPostsByYear } from '../../lib/posts';
+
+const groups = await getPostsByYear();
+const total = groups.reduce((count, group) => count + group.posts.length, 0);
+---
+
+<BaseLayout title="Writing" description="Notes on software, films, and other things.">
+  <section class="pt-16 sm:pt-24">
+    <div class="flex items-baseline justify-between gap-4">
+      <h1 class="text-3xl sm:text-[38px] sm:leading-tight">Writing</h1>
+      <a href="/rss.xml" class="link-muted text-[13px]">RSS</a>
+    </div>
+    <p class="mt-3 text-[13px] text-neutral-500 dark:text-neutral-400">
+      {total} {total === 1 ? 'post' : 'posts'}
+    </p>
+  </section>
+
+  {
+    groups.map((group) => (
+      <section class="mt-12">
+        <h2 class="mb-3 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">{group.year}</h2>
+        <PostRow posts={group.posts} />
+      </section>
+    ))
+  }
+</BaseLayout>
