@@ -3,7 +3,10 @@
  * TODO: replace every placeholder below with your own details.
  */
 export const site = {
-  name: 'Dipta',
+  /** Public handle: used for the site title, navbar wordmark, footer, RSS. */
+  username: 'u7ara',
+  /** First name: only used in the home page greeting. */
+  name: 'A. Adipta Bagas',
   // TODO: your one-line role / location, shown under the greeting.
   title: 'Financial Data Analyst',
   location: 'East Java, Indonesia',

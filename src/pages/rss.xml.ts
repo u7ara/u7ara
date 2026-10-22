@@ -29,7 +29,7 @@ export const GET: APIRoute = async ({ site: astroSite }) => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>${escape(site.name)}</title>
+    <title>${escape(site.username)}</title>
     <link>${new URL('/', base).href}</link>
     <description>${escape(site.description)}</description>
     <language>en</language>

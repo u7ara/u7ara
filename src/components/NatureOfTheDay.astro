@@ -4,9 +4,10 @@ import Section from './Section.astro';
 
 /**
  * "Nature of the day" — a single featured photo.
- * Drop any image into src/assets/trees/ to show it; the section hides itself
- * when the folder is empty. The newest file (by name) wins, so date-prefixed
- * filenames like 2026-10-21.jpg cycle naturally.
+ * Drop any image into src/assets/photography/ to show it; the section hides
+ * itself when the folder is empty. The newest file (by name) wins, so
+ * date-prefixed filenames like 2026-10-21.jpg cycle naturally.
+ * Clicking the photo opens it enlarged in a modal <dialog>.
  */
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/photography/*.{jpg,jpeg,png,webp,avif}', {
   eager: true,
@@ -21,14 +22,47 @@ const image = latest ? images[latest].default : undefined;
   image && (
     <Section title="Nature of the day">
       <figure>
+        <button
+          type="button"
+          class="block w-full cursor-zoom-in"
+          aria-label="Enlarge photo"
+          data-lightbox-open
+        >
+          <Image
+            src={image}
+            alt="Today Image."
+            widths={[600, 900]}
+            sizes="(min-width: 768px) 720px, 100vw"
+            class="w-full outline p-2 outline-neutral-500 hover:outline-neutral-200 object-cover dark:border-neutral-800"
+          />
+        </button>
+      </figure>
+
+      <dialog
+        data-lightbox
+        aria-label="Enlarged photo"
+        class="m-auto max-h-dvh max-w-none bg-transparent p-0 backdrop:bg-neutral-950/80 backdrop:backdrop-blur-sm open:flex open:items-center open:justify-center"
+      >
         <Image
           src={image}
           alt="Today Image."
-          widths={[600, 900]}
-          sizes="(min-width: 768px) 720px, 100vw"
-          class="w-full outline p-2 outline-neutral-500 hover:outline-neutral-200 object-cover dark:border-neutral-800"
+          widths={[900, 1400, 1920]}
+          sizes="100vw"
+          class="max-h-[90dvh] w-auto max-w-[92vw] object-contain"
         />
-      </figure>
+      </dialog>
     </Section>
   )
 }
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('[data-lightbox-open]');
+  const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+
+  trigger?.addEventListener('click', () => dialog?.showModal());
+
+  // Click anywhere outside the photo (backdrop or padding) closes it.
+  dialog?.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>

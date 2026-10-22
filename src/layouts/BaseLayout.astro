@@ -17,7 +17,7 @@ const {
   titleSuffix = Boolean(title),
 } = Astro.props;
 
-const pageTitle = titleSuffix ? `${title} — ${site.name}` : title ?? site.name;
+const pageTitle = titleSuffix ? `${title} — ${site.username}` : title ?? site.username;
 const ogTitle = pageTitle;
 ---
 
