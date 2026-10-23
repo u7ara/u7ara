@@ -1,7 +1,7 @@
 ---
 title: In the Mood for Wong Kar-Wai
 description: a best movie about yearning.
-date: 2026-09-28
+date: 2026-10-23
 draft: false
 ---
 
@@ -17,9 +17,7 @@ what fascinates me most is how little the film needs to express so much. a glanc
 
 ## Tony leung acts with his eyes
 
-what i will tell you is tony leung is really hella good actor, he has rare ability to make a simple sight carrying millions of emotions.
-
-i find myself trying to figure out what he's thinking, even when the character says absolutely nothing. tony leung is def one of them.
+what other most profound things that you can see is tony leung is really hella good actor, he has rare ability to make a simple sight carrying millions of emotions. i find myself trying to figure out what he's thinking, even when the character says absolutely nothing. tony leung is def one of them.
 
 ![staring scene](https://ik.imagekit.io/bmjcfor0h5/blog-2/3c781d288a77adcac69f5dc0f84eb80f.jpeg.png)
 
