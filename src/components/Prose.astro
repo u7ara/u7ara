@@ -128,6 +128,17 @@
     font-size: inherit;
   }
 
+  .prose :global(img) {
+    margin-block: 1.5em;
+    width: 100%;
+    height: auto;
+    /* border: 1px solid var(--color-neutral-200); */
+  }
+
+  :global(.dark) .prose :global(img) {
+    /* border-color: var(--color-neutral-800); */
+  }
+
   .prose :global(hr) {
     margin-block: 2.5em;
     border: 0;

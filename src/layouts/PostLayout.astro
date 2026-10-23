@@ -63,4 +63,39 @@ const { post, prev, next } = Astro.props;
       <a href="/blog" class="link-muted">← All posts</a>
     </p>
   </article>
+
+  <dialog
+    data-lightbox
+    aria-label="Enlarged image"
+    class="m-auto h-[80dvh] w-[min(92vw,1000px)] max-w-none bg-transparent p-0 outline-none backdrop:bg-neutral-950/80 backdrop:backdrop-blur-sm"
+  >
+    <img alt="" class="h-full w-full object-contain" />
+  </dialog>
+
+  <script>
+    // Make images in rendered post Markdown clickable. They arrive as plain
+    // <img> tags from Markdown, so they are upgraded here at runtime.
+    const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const preview = dialog?.querySelector('img');
+    const images = document.querySelectorAll<HTMLImageElement>('.prose img');
+
+    images.forEach((image) => {
+      image.classList.add('cursor-zoom-in');
+      image.addEventListener('click', () => {
+        if (!dialog || !preview) return;
+        preview.src = image.currentSrc || image.src;
+        preview.alt = image.alt;
+        dialog.showModal();
+      });
+    });
+
+    dialog?.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    // Reset when closed so the previous photo isn't shown on the next open.
+    dialog?.addEventListener('close', () => {
+      if (preview) preview.removeAttribute('src');
+    });
+  </script>
 </BaseLayout>

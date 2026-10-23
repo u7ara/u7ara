@@ -41,14 +41,14 @@ const image = latest ? images[latest].default : undefined;
       <dialog
         data-lightbox
         aria-label="Enlarged photo"
-        class="m-auto max-h-dvh max-w-none bg-transparent p-0 backdrop:bg-neutral-950/80 backdrop:backdrop-blur-sm open:flex open:items-center open:justify-center"
+        class="m-auto h-[80dvh] w-[min(92vw,1000px)] max-w-none bg-transparent p-0 outline-none backdrop:bg-neutral-950/80 backdrop:backdrop-blur-sm open:flex open:items-center open:justify-center"
       >
         <Image
           src={image}
           alt="Today Image."
           widths={[900, 1400, 1920]}
           sizes="100vw"
-          class="max-h-[90dvh] w-auto max-w-[92vw] object-contain"
+          class="h-full w-full object-contain"
         />
       </dialog>
     </Section>
