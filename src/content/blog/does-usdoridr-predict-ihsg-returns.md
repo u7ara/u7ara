@@ -9,7 +9,9 @@ draft: false
 
 So I've been curious about something for a while. In Indonesia, whenever the rupiah gets weak against the US dollar, everyone panics. My parents talk about it. The news talks about it. "Dollar naik, market turun," they say. As if it's a law of physics or something.
 
-But I wanted to actually check it. Like, with data.
+At my first glance, this is thought what i initiated this project. If rupiah weaker through time, will it be burden on a corporate for instance who supply their raw materials and suddenly increase import cost? (rising dollar debt cost in rupiah). Of course it's not only cause and that stand by its only own, it one of metrics but how strong the causality?.
+
+![Causality that happen when rupiah weaker](https://ik.imagekit.io/bmjcfor0h5/blog-3/usd-idr-ihsg-1920x1080.png)
 
 So I pulled together daily closing prices for two things:
 - **IHSG** (that's the Jakarta Composite Index, basically how the Indonesian stock market is doing, ticker `^JKSE`)
