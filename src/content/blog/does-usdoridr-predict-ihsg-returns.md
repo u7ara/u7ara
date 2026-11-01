@@ -174,4 +174,4 @@ Not bad for a bunch of daily closing prices. -->
 
 ---
 
-*Everything here is reproducible - the code, the data, and all the numbers live in the project. If you ever want to poke at it yourself, just ask me.*
+*Everything here is reproducible - the code, the data, and all the numbers live in the project. full project on my [Github](https://github.com/u7ara/usdtoidr-ihsg-metric)*
