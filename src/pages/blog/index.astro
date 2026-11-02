@@ -10,10 +10,10 @@ const total = groups.reduce((count, group) => count + group.posts.length, 0);
 <BaseLayout title="Writing" description="Notes on software, films, and other things.">
   <section class="pt-16 sm:pt-24">
     <div class="flex items-baseline justify-between gap-4">
-      <h1 class="text-3xl sm:text-[38px] sm:leading-tight">Writing</h1>
-      <a href="/rss.xml" class="link-muted text-[13px]">RSS</a>
+      <h1 class="font-display text-4xl leading-tight sm:text-6xl">Writing</h1>
+      <a href="/rss.xml" class="link-muted font-mono text-[13px]">RSS</a>
     </div>
-    <p class="mt-3 text-[13px] text-neutral-500 dark:text-neutral-400">
+    <p class="meta mt-3">
       {total} {total === 1 ? 'post' : 'posts'}
     </p>
   </section>
@@ -21,7 +21,7 @@ const total = groups.reduce((count, group) => count + group.posts.length, 0);
   {
     groups.map((group) => (
       <section class="mt-12">
-        <h2 class="mb-3 text-[13px] font-medium text-neutral-500 dark:text-neutral-400">{group.year}</h2>
+        <h2 class="label mb-3">{group.year}</h2>
         <PostRow posts={group.posts} />
       </section>
     ))

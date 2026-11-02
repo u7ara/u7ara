@@ -3,13 +3,14 @@
 // inside <slot /> is not part of this component's scope.
 ---
 
-<div class="prose font-mono">
+<div class="prose font-sans">
   <slot />
 </div>
 
 <style>
   .prose {
     max-width: 65ch;
+    font-family: var(--font-sans);
     font-size: 15px;
     line-height: 1.75;
     color: var(--color-neutral-700);
@@ -40,19 +41,20 @@
 
   .prose :global(h2),
   .prose :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 400;
     color: var(--color-neutral-900);
-    font-weight: 600;
     text-wrap: balance;
     margin-top: 2em;
     margin-bottom: 0.75em;
   }
 
   .prose :global(h2) {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .prose :global(h3) {
-    font-size: 1.0625rem;
+    font-size: 1.1875rem;
   }
 
   :global(.dark) .prose :global(h2),
@@ -96,6 +98,7 @@
   }
 
   .prose :global(code) {
+    font-family: var(--font-mono);
     font-size: 0.8125rem;
     background-color: var(--color-neutral-100);
     border-radius: 2px;
@@ -113,6 +116,7 @@
     background-color: var(--color-neutral-100);
     border-radius: 2px;
     padding: 1rem;
+    font-family: var(--font-mono);
     font-size: 0.8125rem;
     line-height: 1.7;
   }

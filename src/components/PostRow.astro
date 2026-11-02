@@ -22,7 +22,7 @@ const { posts, showDescription = false } = Astro.props;
             href={`/blog/${post.slug}`}
             class="group flex flex-col gap-1 border-b border-neutral-200 py-4 dark:border-neutral-800"
           >
-            <span class="text-lg text-neutral-900 group-hover:underline group-hover:underline-offset-4 dark:text-white">
+            <span class="font-display text-xl text-neutral-900 group-hover:underline group-hover:underline-offset-4 dark:text-white sm:text-2xl">
               {post.title}
             </span>
 
@@ -30,7 +30,7 @@ const { posts, showDescription = false } = Astro.props;
               <span class="max-w-[65ch] text-neutral-500 dark:text-neutral-400">{post.description}</span>
             )}
 
-            <span class="text-[13px] text-neutral-500 dark:text-neutral-400">
+            <span class="meta">
               {formatPostDate(post.date)} · {post.minutes} min read
             </span>
           </a>

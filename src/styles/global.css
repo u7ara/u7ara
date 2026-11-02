@@ -3,12 +3,22 @@
 /* Class-based dark mode; the <html> class is set by the inline script in <head>. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Three-font typography system.
+ *   --font-display  Instrument Serif  → hero/page titles, section & editorial headings
+ *   --font-sans     DM Sans           → body copy, navigation, UI, links, article text
+ *   --font-mono     IBM Plex Mono     → dates, metadata, labels, numbers, code
+ *
+ * Tailwind utilities: font-display, font-sans, font-mono.
+ */
 @theme {
-  --font-sans: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-display: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-serif: var(--font-mono);
+  /* `font-serif` maps to the display face so legacy usages stay editorial. */
+  --font-serif: var(--font-display);
 }
 
 @layer base {
@@ -19,7 +29,7 @@
   }
 
   body {
-    @apply bg-white font-mono text-[15px] leading-normal text-neutral-900 dark:bg-neutral-950 dark:text-neutral-300;
+    @apply bg-white font-sans text-[15px] leading-normal text-neutral-900 dark:bg-neutral-950 dark:text-neutral-300;
   }
 
   h1,
@@ -28,7 +38,7 @@
   h4,
   h5,
   h6 {
-    @apply text-balance font-semibold text-neutral-900 dark:text-white;
+    @apply font-display text-balance font-normal text-neutral-900 dark:text-white;
   }
 
   ::selection {
@@ -63,6 +73,19 @@
 
   .link-muted {
     @apply text-neutral-500 dark:text-neutral-400 underline decoration-transparent underline-offset-4 hover:text-neutral-900 hover:decoration-neutral-900 dark:hover:text-white dark:hover:decoration-white;
+  }
+
+  /*
+   * Small uppercase technical annotation in IBM Plex Mono.
+   * Used for dates, tags, section eyebrows and other metadata.
+   */
+  .label {
+    @apply font-mono text-[12px] font-medium uppercase tracking-[0.08em] text-neutral-500 dark:text-neutral-400;
+  }
+
+  /* Machine-readable metadata (dates, stats, read time) — mono, not uppercase. */
+  .meta {
+    @apply font-mono text-[13px] text-neutral-500 dark:text-neutral-400;
   }
 }
 
