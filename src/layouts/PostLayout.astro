@@ -89,8 +89,33 @@ const { post, prev, next } = Astro.props;
       });
     });
 
+    // Close when tapping outside the photo. The blurred area is the dialog's
+    // ::backdrop pseudo-element, which doesn't deliver clicks, and the image is
+    // object-contain so its element box is larger than the visible photo. We
+    // therefore compare the tap against the image's *rendered* box and only
+    // close when the tap misses it — so a tap on the photo itself does nothing.
+    function renderedImageRect(img: HTMLImageElement) {
+      const box = img.getBoundingClientRect();
+      if (!img.naturalWidth || !img.naturalHeight) return box;
+
+      const scale = Math.min(box.width / img.naturalWidth, box.height / img.naturalHeight);
+      const width = img.naturalWidth * scale;
+      const height = img.naturalHeight * scale;
+
+      return {
+        left: box.left + (box.width - width) / 2,
+        top: box.top + (box.height - height) / 2,
+        right: box.left + (box.width + width) / 2,
+        bottom: box.top + (box.height + height) / 2,
+      };
+    }
+
     dialog?.addEventListener('click', (event) => {
-      if (event.target === dialog) dialog.close();
+      if (!preview) return;
+      const rect = renderedImageRect(preview);
+      const { clientX: x, clientY: y } = event;
+      const insideImage = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+      if (!insideImage) dialog.close();
     });
 
     // Reset when closed so the previous photo isn't shown on the next open.
