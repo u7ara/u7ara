@@ -71,8 +71,9 @@ projects:
   - name: Financial Report Automation (Diploma Capstone Project)
     url: theresno
     description: An comprehensive implementation manage raw financial data to complete readable report.
-  # - name: Project Two
-  #   description: A small tool built to scratch a personal itch.
+  - name: Relationship between the Jakarta Composite Index (^JKSE) and the USD/IDR exchange rate up and downs.
+    url : https://github.com/u7ara/usdtoidr-ihsg-metric
+    description: Econometric time series analysis
 
 skills:
   - group: Microsoft Office Suites
