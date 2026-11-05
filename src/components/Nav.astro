@@ -7,7 +7,7 @@ const isActive = (href: string) =>
   href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`);
 ---
 
-<header class="sticky top-0 z-10 border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950">
+<header class="sticky top-0 z-10 border-b border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-950 relative">
   <div class="mx-auto flex h-14 w-full max-w-3xl items-center justify-between px-6">
     <a
       href="/"
@@ -53,29 +53,62 @@ const isActive = (href: string) =>
     </div>
   </div>
 
-  <nav id="nav-menu" aria-label="Main" class="hidden border-t border-neutral-200 dark:border-neutral-800 sm:hidden">
-    <ul class="mx-auto w-full max-w-3xl px-6 py-2 font-sans text-[13px]">
-      {
-        site.nav.map((item) => (
-          <li class="border-b border-neutral-200 last:border-b-0 dark:border-neutral-800">
-            <a
-              href={item.href}
-              aria-current={isActive(item.href) ? 'page' : undefined}
-              class:list={[
-                'block py-3',
-                isActive(item.href)
-                  ? 'text-neutral-900 dark:text-white'
-                  : 'text-neutral-500 dark:text-neutral-400',
-              ]}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+  <div id="nav-menu" class="hidden absolute inset-x-0 top-full z-10 px-3 pt-2 pb-3 sm:hidden">
+    <nav
+      aria-label="Main"
+      class="nav-panel mx-auto w-full max-w-3xl rounded-xl border border-neutral-200/70 bg-white/60 p-2 font-sans text-[13px] shadow-lg shadow-neutral-900/5 backdrop-blur-xl backdrop-saturate-150 dark:border-white/10 dark:bg-neutral-900/50 dark:shadow-black/40"
+    >
+      <ul>
+        {
+          site.nav.map((item, index) => (
+            <li class="nav-item" style={`--index: ${index}`}>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'relative block rounded-lg px-3 py-2.5 transition-colors hover:bg-neutral-900/5 dark:hover:bg-white/5',
+                  'before:absolute before:inset-y-2 before:left-0 before:w-0.5 before:rounded-full before:bg-neutral-900 before:opacity-0 before:transition-opacity dark:before:bg-white',
+                  isActive(item.href)
+                    ? 'bg-neutral-900/5 text-neutral-900 before:opacity-100 dark:bg-white/5 dark:text-white'
+                    : 'text-neutral-500 dark:text-neutral-400',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
 </header>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-panel {
+      animation: nav-panel-in 160ms ease-out both;
+    }
+
+    .nav-item {
+      animation: nav-item-in 200ms ease-out both;
+      animation-delay: calc(var(--index) * 25ms);
+    }
+  }
+
+  @keyframes nav-panel-in {
+    from {
+      opacity: 0;
+      translate: 0 -4px;
+    }
+  }
+
+  @keyframes nav-item-in {
+    from {
+      opacity: 0;
+      translate: 0 -3px;
+    }
+  }
+</style>
 
 <script>
   const toggle = document.getElementById('nav-toggle');
@@ -96,6 +129,12 @@ const isActive = (href: string) =>
   // Close when a link is followed or Escape is pressed.
   menu?.addEventListener('click', (event) => {
     if ((event.target as Element).closest('a')) setOpen(false);
+  });
+
+  // Close when tapping the frosted panel's inset gutter (outside the nav surface).
+  menu?.addEventListener('pointerdown', (event) => {
+    if ((event.target as Element).closest('nav')) return;
+    setOpen(false);
   });
 
   document.addEventListener('keydown', (event) => {
