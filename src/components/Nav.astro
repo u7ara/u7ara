@@ -66,10 +66,9 @@ const isActive = (href: string) =>
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class:list={[
-                  'relative block rounded-lg px-3 py-2.5 transition-colors hover:bg-neutral-900/5 dark:hover:bg-white/5',
-                  'before:absolute before:inset-y-2 before:left-0 before:w-0.5 before:rounded-full before:bg-neutral-900 before:opacity-0 before:transition-opacity dark:before:bg-white',
+                  'block rounded-lg px-3 py-2.5 transition-colors hover:bg-neutral-900/5 dark:hover:bg-white/5',
                   isActive(item.href)
-                    ? 'bg-neutral-900/5 text-neutral-900 before:opacity-100 dark:bg-white/5 dark:text-white'
+                    ? 'bg-neutral-900/5 text-neutral-900 dark:bg-white/5 dark:text-white'
                     : 'text-neutral-500 dark:text-neutral-400',
                 ]}
               >
