@@ -31,7 +31,7 @@ export const site = {
   nav: [
     { label: 'Home', href: '/' },
     { label: 'Blog', href: '/blog' },
-    { label: 'CV', href: '/cv' },
+    { label: 'Experience', href: '/experience' },
   ],
 };
 
